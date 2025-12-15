@@ -4,10 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-ix = { version = "0.28", features = ["process", "mount", "user", "signal"] }
+nix = { version = "0.28", features = ["env", "process", "mount", "user", "signal"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 tokio = { version = "1.29.0", features = ["full"] }
 clap = { version = "4.5.15", features = ["derive"] }
 log = "0.4.21"
 env_logger = "0.11.2"
+toml = "0.9.8"
