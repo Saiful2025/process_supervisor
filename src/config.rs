@@ -17,7 +17,7 @@ impl Config {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct ServiceConfig {
     pub name: String,
     pub command: String,
@@ -27,7 +27,7 @@ pub struct ServiceConfig {
     pub max_restarts: u32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum RestartPolicy {
     Never,
     Always,

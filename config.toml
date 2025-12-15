@@ -1,0 +1,7 @@
+[[services]]
+name = "crash_test_dummy"
+command = "./crashy.sh"
+args = []
+env = {}
+restart_policy = "OnFailure"
+max_restarts = 3
