@@ -1,8 +1,8 @@
 use std::collections::HashMap;
-use std::process::{self, Command, Child};
+use std::process::{Command, Child};
 use std::error::Error;
 
-use crate::config::{self, RestartPolicy, ServiceConfig};
+use crate::config::{RestartPolicy, ServiceConfig};
 
 pub struct ProcessManager {
     processes: HashMap<String, ProcessInfo>,
@@ -83,5 +83,19 @@ impl ProcessManager {
             }
         }
         Ok(())
+    }
+
+    // A method to stop all running services gracefully.
+    pub fn stop_all(&mut self) {
+        for (name, info) in self.processes.iter_mut() {
+            log::info!("Killing service: {}", name);
+            match info.child.kill() {
+                Ok(_) => log::info!("{} was killed successfully.", name),
+                Err(e) => log::error!("Couldn't kill {}: {}", name, e),
+            }
+
+            // Wait for the child process to exit.
+            let _ = info.child.wait();
+        }
     }
 }

@@ -54,8 +54,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     log::info!("Shutting down all services.");
-    // TODO: Implement a method to stop all managed services gracefully.
-    // manager.stop_all();
+    manager.stop_all();
 
     Ok(())
 }
