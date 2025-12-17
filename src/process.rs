@@ -91,6 +91,9 @@ impl ProcessManager {
             log::info!("Killing service: {}", name);
             match info.child.kill() {
                 Ok(_) => log::info!("{} was killed successfully.", name),
+                Err(e) if e.kind() == std::io::ErrorKind::NotFound => {
+                    log::debug!("{} has already exited.", name);
+                }
                 Err(e) => log::error!("Couldn't kill {}: {}", name, e),
             }
 
